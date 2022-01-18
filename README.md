@@ -6,6 +6,7 @@ Federated Lightning Address Server
 
 1. Download the binary from the releases page (or compile with `go build` or `go get`)
 2. Set the following environment variables somehow (using example values from bitmia.com):
+(note that DOMAIN can be a comma-seperated list or a single domain)
 
 ```
 PORT=17422
