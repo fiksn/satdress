@@ -81,6 +81,14 @@ body {
   background-color: rgba(86, 46, 249, 0.85);
 }
 
+.suffix {
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  word-break: keep-all;
+  letter-spacing: 0.5px;
+}
+
 .copy-button {
   width: 100%;
   color: #fff;
