@@ -67,9 +67,7 @@ func SaveName(
 }
 
 func GetName(name, domain string) (*Params, error) {
-	name = getID(name, domain)
-
-	val, closer, err := db.Get([]byte(name))
+	val, closer, err := db.Get([]byte(getID(name, domain)))
 	if err != nil {
 		return nil, err
 	}

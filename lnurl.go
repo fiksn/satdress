@@ -14,21 +14,27 @@ import (
 func handleLNURL(w http.ResponseWriter, r *http.Request) {
 	username := mux.Vars(r)["user"]
 
-	hostname := r.URL.Host
-	if hostname == "" {
-		hostname = r.Host
-	}
-
+	domains := getDomains(s.Domain)
 	domain := ""
-	for _, one := range getDomains(s.Domain) {
-		if strings.Contains(hostname, one) {
-			domain = one
-			break
+
+	if len(domains) == 1 {
+		domain = domains[0]
+	} else {
+		hostname := r.URL.Host
+		if hostname == "" {
+			hostname = r.Host
 		}
-	}
-	if domain == "" {
-		json.NewEncoder(w).Encode(lnurl.ErrorResponse("incorrect domain"))
-		return
+
+		for _, one := range getDomains(s.Domain) {
+			if strings.Contains(hostname, one) {
+				domain = one
+				break
+			}
+		}
+		if domain == "" {
+			json.NewEncoder(w).Encode(lnurl.ErrorResponse("incorrect domain"))
+			return
+		}
 	}
 
 	params, err := GetName(username, domain)
